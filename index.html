@@ -17,6 +17,42 @@
         border: 1px solid #ddd;
       }
 
+      .card {
+        display: block;
+        margin: auto;
+        padding: 7px;
+        height: 110px;
+        width: 80px;
+        margin-top: 10px;
+        background-color: whitesmoke;
+        border: 1px solid black;
+        border-radius: 5px;
+        box-shadow: 5px 10px #333;
+
+      }
+
+      .big {
+        font-size: 1.5em;
+        text-align: center;
+        line-height: 35px;
+        margin-top: 10px;
+        display: block;
+
+
+      }
+
+      .red {
+        color: red;
+      }
+
+      .tiny {
+        display: block;
+        font-size: 0.6em;
+        line-height: 15px;
+        vertical-align: top;
+        text-align: left;
+      }
+
 
     </style>
   </head>
@@ -85,13 +121,19 @@
           let html2 = card.rank + "&" + card.suit + ";";
           let div = document.createElement("div");
           div.classList.add("card");
+          if (card.suit === "hearts" || card.suit === "diams") {
+            div.classList.add("red");
+          }
+
 
           let span1 = document.createElement("span");
           span1.innerHTML = html2;
+          span1.classList.add("tiny");
           div.appendChild(span1);
 
           let span2 = document.createElement("span");
           span2.innerHTML = html1;
+          span2.classList.add("big");
           div.appendChild(span2);
           el.appendChild(div);
 
