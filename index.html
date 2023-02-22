@@ -146,13 +146,38 @@
 
       function makeCards() {
         let tempHolder = [];
+        let curWinner = {
+          "high": null,
+          "player": null,
+        }
+        let playoff = [];
           for(let x = 0; x < players.length; x++) {
             let card = deals[x].shift();
-            console.log(card);
-            console.log(deals[x]);
+            if (curWinner.high == card.value) {
+              if (playoff.length == 0) {
+                playoff.push(
+                  {
+                    "player" : curWinner.player,
+                    "card" : curWinner.card
+                }
+                );
+                playoff.push({
+                  "player" : x,
+                    "card" : card
+                })
+              }
+            }
+            if (!curWinner.high || curWinner.high < card.value) {
+              curWinner.high = card.value;
+              curWinner.player = x;
+              curWinner.card = card;
+            }
+
+
             tempHolder.push(card);
             showCard(players[x], card);
           }
+          console.log(curWinner);
 
 
       }
