@@ -52,6 +52,10 @@
         vertical-align: top;
         text-align: left;
       }
+      .stats {
+        margin-top: 25px;
+        font-size: 0.8em;
+      }
 
 
     </style>
@@ -179,6 +183,34 @@
           }
           console.log(curWinner);
 
+          console.log(tempHolder);
+          updater(curWinner.player, tempHolder);
+
+
+
+      }
+
+      function updater(winner, tempHolder) {
+        players[winner].style.backgroundColor = "green";
+
+
+        console.log(tempHolder);
+        tempHolder.sort(function() {
+          return .5 - Math.random();
+        })
+        console.log(tempHolder);
+        for(let x = 0; x < players.length; x++) {
+          let div = document.createElement("div");
+          div.classList.add("stats");
+          div.innerHTML = deals[x].length < 1 ? "Lost" : "Left:" + (deals[x].length -1);
+          players[x].appendChild(div);
+        }
+
+        for(let record of tempHolder ) {
+          deals[winner].push(record);
+        }
+
+        res.innerHTML = "Player" + (winner + 1) + " won " + tempHolder.length + " cards<br>";
 
       }
 
